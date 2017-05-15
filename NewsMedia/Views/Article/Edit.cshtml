@@ -1,0 +1,37 @@
+﻿@model NewsMedia.Models.Article
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit an Article</h2>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            @Html.LabelFor(model => model.Title)
+            @Html.TextBoxFor(model => model.Title)
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.subHeader)
+            @Html.TextBoxFor(model => model.subHeader)
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.Content)
+            @Html.TextBoxFor(model => model.Content)
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.categoryId)
+            @Html.DropDownListFor(model => model.categoryId, new List<SelectListItem> {
+           new SelectListItem{Value = "1", Text="Sports"},
+           new SelectListItem{Value = "2", Text="Opinion"},
+           new SelectListItem{Value = "3", Text="National"},
+           new SelectListItem{Value = "4", Text="OverSeas"},
+           new SelectListItem{Value = "5", Text="Travel"},
+           new SelectListItem{Value = "6", Text="Odd"}
+       })
+        </tr>
+    </table>
+    
+    <input type="submit" value="Edit" />
+}

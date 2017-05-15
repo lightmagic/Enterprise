@@ -1,0 +1,49 @@
+﻿
+@model NewsMedia.Models.ArticleCreationModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>@Html.TextBoxFor(m => m.username, new { @readonly = "readonly", @Value = User.Identity.Name })</tr>
+        <tr>
+            @Html.LabelFor(m => m.articleTitle)
+            @Html.TextBoxFor(m => m.articleTitle)
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.subHeader)
+            @Html.TextBoxFor(m => m.subHeader)
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.articleContent)
+            @Html.TextBoxFor(m => m.articleContent)
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.imageArticle)
+            <input type="file" name="imageArticle" />
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.isBreaking)
+            @Html.CheckBoxFor(m => m.isBreaking)
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.categories)
+            @Html.DropDownListFor(m => m.categories, new List<SelectListItem> {
+           new SelectListItem{Value = "1", Text="Sports"},
+           new SelectListItem{Value = "2", Text="Opinion"},
+           new SelectListItem{Value = "3", Text="National"},
+           new SelectListItem{Value = "4", Text="OverSeas"},
+           new SelectListItem{Value = "5", Text="Travel"},
+           new SelectListItem{Value = "6", Text="Odd"}
+       })
+        </tr>
+
+    </table>
+
+    <input type="submit" value="Create" />
+}

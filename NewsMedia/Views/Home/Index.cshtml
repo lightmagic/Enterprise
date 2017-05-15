@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                Welcome to the HomePage for NewsMedia. Below you can see a brief descriptions of the current articles
+            </p>
+        </div>
+    </section>
+}
+<h3>List of Articles:</h3>
+
+@foreach (var item in Model)
+{
+    <div>
+        <h4>@item.Title</h4>
+        <div>@item.subHeader</div>
+        <div>@item.Content</div>
+        <div>@item.imageArticle</div>
+        <div>@item.breakingNews</div>
+        <hr/>
+    </div>
+}

@@ -1,0 +1,32 @@
+﻿@model NewsMedia.Models.UserProfile
+@{
+    ViewBag.Title = "UserEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UserEdit</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            @Html.LabelFor(model => model.firstName)
+            @Html.TextBoxFor(model => model.firstName)
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.lastName)
+            @Html.TextBoxFor(model => model.lastName)
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.email)
+            @Html.TextBoxFor(model => model.email)
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.profileDesc)
+            @Html.TextBoxFor(model => model.profileDesc)
+        </tr>
+
+    </table>
+    <input type="submit" value="Save Changes" />
+
+}

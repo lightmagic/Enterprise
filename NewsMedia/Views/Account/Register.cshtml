@@ -1,0 +1,50 @@
+﻿@model NewsMedia.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Create a new account.</h2>
+</hgroup>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(model => model.UserName)
+                @Html.TextBoxFor(model => model.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.Password)
+                @Html.PasswordFor(model => model.Password)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.firstName)
+                @Html.TextBoxFor(model => model.firstName)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.lastName)
+                @Html.TextBoxFor(model => model.lastName)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.profileDesc)
+                @Html.TextBoxFor(model => model.profileDesc)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.email)
+                @Html.TextBoxFor(model => model.email)
+                
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

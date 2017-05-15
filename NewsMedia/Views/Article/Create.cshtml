@@ -1,0 +1,59 @@
+﻿@model NewsMedia.Models.ArticleCreationModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <table>
+        <br />
+        <tr><label for="username">The Author of this new article will belong to:</label></tr>
+        <tr>@Html.TextBoxFor(model => model.username, new { @readonly = "readonly", @Value = User.Identity.Name })</tr>
+        <tr>
+            @Html.LabelFor(model => model.Title)
+            @Html.TextBoxFor(model => model.Title)
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.subHeader)
+            @Html.TextBoxFor(model => model.subHeader)
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.Content)
+            @Html.TextBoxFor(model => model.Content)
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.imageArticle)
+            <input type="file" name="imageArticle" />
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.categories)
+            @Html.DropDownListFor(model => model.categories, new List<SelectListItem> {
+           new SelectListItem{Value = "1", Text="Sports"},
+           new SelectListItem{Value = "2", Text="Opinion"},
+           new SelectListItem{Value = "3", Text="National"},
+           new SelectListItem{Value = "4", Text="OverSeas"},
+           new SelectListItem{Value = "5", Text="Travel"},
+           new SelectListItem{Value = "6", Text="Odd"}
+       })
+        </tr>
+        <tr>
+            @Html.LabelFor(model => model.breakingNews)
+            @Html.CheckBoxFor(model => model.breakingNews)
+        </tr>
+
+    </table>
+
+    <input type="submit" value="Create" />
+}
+
+@*This is part of the validation to make it work. Also if a textbox has incorrect value or is empty, it will highlight the box as red*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

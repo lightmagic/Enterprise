@@ -18,6 +18,7 @@ namespace NewsMedia.Models
         public DbSet<UserProfile> UserProfiles { get; set; }
     }
 
+    //users
     [Table("UserProfile")]
     public class UserProfile
     {

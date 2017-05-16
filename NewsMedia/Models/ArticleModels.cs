@@ -21,8 +21,16 @@ namespace NewsMedia.Models
     public class Article
     {
         public int articleId { get; set; }
+        [Required]
+        [StringLength(50, ErrorMessage = "The Header must not be over 50 characters long")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
+
+        [Display(Name = "SubHeader")]
         public string subHeader { get; set; }
+
+        [Required]
+        [Display(Name = "Content")]
         public string Content { get; set; }
         public DateTime dateCreated { get; set; }
         public string imageArticle { get; set; }

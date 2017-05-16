@@ -8,6 +8,8 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
     <table>
         <tr>
             @Html.LabelFor(model => model.firstName)
@@ -29,4 +31,8 @@
     </table>
     <input type="submit" value="Save Changes" />
 
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

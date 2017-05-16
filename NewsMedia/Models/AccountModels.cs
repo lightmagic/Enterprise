@@ -18,7 +18,7 @@ namespace NewsMedia.Models
         public DbSet<UserProfile> UserProfiles { get; set; }
     }
 
-    //users
+    //model for users and also used for validation in the editing
     [Table("UserProfile")]
     public class UserProfile
     {
@@ -26,9 +26,20 @@ namespace NewsMedia.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
+        [Required]
+        [Display(Name = "First name")]
         public string firstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last name")]
         public string lastName { get; set; }
+
+        [Display(Name = "Profile Description")]
         public string profileDesc { get; set; }
+
+        [Required]
+        [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string email { get; set; }
     }
 
@@ -57,7 +68,7 @@ namespace NewsMedia.Models
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+       // [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -78,5 +89,6 @@ namespace NewsMedia.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string email { get; set; }
     }
+    
 
 }

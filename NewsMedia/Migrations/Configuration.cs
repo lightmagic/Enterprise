@@ -32,10 +32,7 @@ namespace NewsMedia.Migrations
             //by overriding the seed method, it checks if the data is in the database. If it isn't, then create it, if it is, then update
             context.UserProfiles.AddOrUpdate(r => r.UserName,
             new UserProfile { UserName = "kyle354", firstName = "kyle",    lastName = "schem", email = "kyleschem@mail.com", profileDesc = "Testing Seed" },
-            new UserProfile { UserName = "kyle",    firstName = "kyle354", lastName = "schem", email = "kyleschem@mail.com", profileDesc = "Testing Seed" },
-            new UserProfile { UserName = "kyle354", firstName = "kyle", lastName = "schem", email = "kyleschem@mail.com", profileDesc = "Testing Seed" },
-            new UserProfile { UserName = "kyle354", firstName = "kyle", lastName = "schem", email = "kyleschem@mail.com", profileDesc = "Testing Seed" },
-            new UserProfile { UserName = "kyle354", firstName = "kyle", lastName = "schem", email = "kyleschem@mail.com", profileDesc = "Testing Seed" }
+            new UserProfile { UserName = "kyle",    firstName = "kyle354", lastName = "schem", email = "kyleschem@mail.com", profileDesc = "Testing Seed" }
             );
         }
     }

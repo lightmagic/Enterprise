@@ -24,7 +24,7 @@
                            @*              Name of link   ActionName    Controller           *@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("National", "National", "Article")</li>
-                              <li>@Html.ActionLink("OverSeas", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("OverSeas", "_OverSeas", "Article")</li>
                             @if (HttpContext.Current.User.Identity.IsAuthenticated)
                             {
                                 <li>@Html.ActionLink("Article", "Articles", "Article")</li>

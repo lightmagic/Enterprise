@@ -38,6 +38,13 @@ namespace NewsMedia.Controllers
             return model.SingleOrDefault(x => x.UserName == userName);
         }
 
+        public ActionResult Author(string userName)
+        {
+            UserProfile usr = new UserProfile();
+            usr = GetUser(userName);
+            return View(usr);
+        }
+
         //Delete user from DB http://www.completecsharptutorial.com/mvc-articles/insert-update-delete-in-asp-net-mvc-5-without-entity-framework/
         public ActionResult DeleteUser(string userName)
         {
@@ -98,7 +105,7 @@ namespace NewsMedia.Controllers
                 TempData["msg"] = "Error. Could not Update the User!";
             }
 
-            return RedirectToAction("UserEdit");
+            return RedirectToAction("Users");
         }
 
 

@@ -149,7 +149,7 @@ namespace NewsMedia.Controllers
                     return "The Password must be atleast 6 characters long!";
 
                 case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
+                    return "Invalid Email Address";
 
                 case MembershipCreateStatus.UserRejected:
                     return "While creating a user, there was an internal problem. Try to register again and or refresh";

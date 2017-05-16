@@ -127,7 +127,7 @@ namespace NewsMedia.Controllers
             {
                 TempData["msg"] = "Error. Could not Create the article";
             }
-            return RedirectToAction("Home");
+            return RedirectToAction("Articles");
         }
 
 
@@ -183,6 +183,36 @@ namespace NewsMedia.Controllers
 
             //return the list
             return nationalCategory;
+        }
+
+        public ActionResult _OverSeas()
+        {
+            var model = OverSeasCategory();
+            return View(model);
+        }
+
+        public List<Article> OverSeasCategory()
+        {
+            Connection();
+            List<Article> overseaCategory = new List<Article>(); //list of articles of that particular category
+            DataTable getSea = new DataTable(); //to use select option which will retreive all data
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [dbo].[Article] WHERE categoryId = '4'", connectToDB);
+            adapter.Fill(getSea); //fill in sportTb with data retreived from sql
+
+            foreach (DataRow data in getSea.Rows)
+            {
+                Article art = new Article();
+                art.Title = data["Title"].ToString();
+                art.subHeader = data["subHeader"].ToString();
+                art.Content = data["Content"].ToString();
+                art.dateCreated = (DateTime)data["dateCreated"];
+                art.UserId = (int)data["UserId"];
+                art.categoryId = (int)data["categoryId"];
+                overseaCategory.Add(art);
+            }
+
+            //return the list
+            return overseaCategory;
         }
 
     }

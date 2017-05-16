@@ -157,6 +157,7 @@ namespace NewsMedia.Controllers
 
         public ActionResult National()
         {
+            //nat
             var model = NationalCategory();
             return View(model);
         }

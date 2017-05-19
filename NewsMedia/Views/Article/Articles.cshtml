@@ -6,16 +6,23 @@
 
 <table border="1">
     <tr>
-        <th>ArticleTitle</th>
+        <th>Title</th>
+        <th>Sub-Header</th>
         <th>Content</th>
-        
+        <th>Image</th>
+        <th>Category ID</th>
+        <th>User ID</th>
     </tr>
     
     @foreach (var article in Model)
     {
         <tr>
             <td>@article.Title</td>
+            <td>@article.subHeader</td>
             <td>@article.Content</td>
+            <td>@article.imageArticle</td>
+            <td>@article.categoryId</td>
+            <td>@article.UserId</td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { Title = article.Title }, new { @style = "color:blue" })
                 @Html.ActionLink("Delete", "DeleteArticle", new { Title = article.Title }, new { @style = "color:blue"})

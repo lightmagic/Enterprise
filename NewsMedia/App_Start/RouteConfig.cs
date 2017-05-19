@@ -13,12 +13,12 @@ namespace NewsMedia
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //routes.MapRoute(
-            //    name: "User",
-            //    url: "Users/{name}",
-            //    defaults:
-            //    new { controller = "Users", action = "Users", name = UrlParameter.Optional }
-            //);
+            routes.MapRoute(
+                name: "Category",
+                url: "Category/{categoryName}",
+                defaults:
+                new { controller = "Articles", action = "Category", name = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",

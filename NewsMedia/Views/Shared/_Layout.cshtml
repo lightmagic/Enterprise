@@ -25,11 +25,9 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("National", "National", "Article")</li>
                             <li>@Html.ActionLink("OverSeas", "_OverSeas", "Article")</li>
-                            @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                            {
-                                <li>@Html.ActionLink("Article", "Articles", "Article")</li>
-                                <li>@Html.ActionLink("Users", "Users", "Users")</li>
-                            }
+                            <li>@Html.ActionLink("Users", "Users", "Users")</li>
+                            <li>@Html.ActionLink("Article", "Articles", "Article")</li>
+                            
                         </ul>
                     </nav>
                 </div>

@@ -45,6 +45,7 @@ namespace NewsMedia.Controllers
             return View(usr);
         }
 
+        [Authorize]
         //Delete user from DB http://www.completecsharptutorial.com/mvc-articles/insert-update-delete-in-asp-net-mvc-5-without-entity-framework/
         public ActionResult DeleteUser(string userName)
         {
@@ -80,6 +81,7 @@ namespace NewsMedia.Controllers
 
         //Edit the user controller//
         [HttpPost]
+        [Authorize]
         public ActionResult UserEdit(string userName, string firstName, string lastName, string email, string profileDesc)
         {
             try

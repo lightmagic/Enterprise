@@ -53,6 +53,7 @@ namespace NewsMedia.Controllers
 
         //create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(string username, string categories, string Title, string subHeader, 
                                    string Content, string imageArticle, bool breakingNews)
         {
@@ -100,6 +101,7 @@ namespace NewsMedia.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(string Title, string subHeader, string Content, int categoryId)
         {
             try
@@ -132,6 +134,7 @@ namespace NewsMedia.Controllers
 
 
         //Delete
+        [Authorize]
         public ActionResult DeleteArticle(string Title)
         {
             try

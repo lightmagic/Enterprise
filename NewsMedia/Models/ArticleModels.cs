@@ -67,10 +67,10 @@ namespace NewsMedia.Models
         public string username { get; set; }
     }
 
-    [Table("Category")]
-    public class Category
-    {
-        public int categoryId { get; set; }
-        public string categoryName { get; set; }
-    }
+    //[Table("Category")]
+    //public class Category
+    //{
+    //    public int categoryId { get; set; }
+    //    public string categoryName { get; set; }
+    //}
 }

@@ -14,6 +14,7 @@ namespace NewsMedia.Controllers
         // GET: /Users/
         UsersContext db = new UsersContext();
 
+        //public string connectionString = "Data Source=tcp:enterprisekyle.database.windows.net,1433;Initial Catalog=kyleEnterprise;Persist Security Info=False;User ID=kyle;Password=Enterprise123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public string connectionString = "Data Source=KYLE\\SQLSERVER;Initial Catalog=Enterprise;Integrated Security=True";
         private SqlConnection connectToDB;
 

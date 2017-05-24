@@ -18,6 +18,7 @@ namespace NewsMedia.Controllers
         UsersContext db = new UsersContext();
         ArticleContext art = new ArticleContext();
 
+        //public string connectionString = "Data Source=tcp:enterprisekyle.database.windows.net,1433;Initial Catalog=kyleEnterprise;Persist Security Info=False;User ID=kyle;Password=Enterprise123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public string connectionString = "Data Source=KYLE\\SQLSERVER;Initial Catalog=Enterprise;Integrated Security=True";
         private SqlConnection connectToDB;
 
@@ -31,6 +32,14 @@ namespace NewsMedia.Controllers
         {
             var model = art.ArticleCollection.ToList();
             return View(model);
+        }
+
+        //display single article
+        public ActionResult View(string Title)
+        {
+            Article art = new Article();
+            art = GetArticle(Title);
+            return View(art);
         }
 
         //to get the user who shall be connected with the article
@@ -158,6 +167,66 @@ namespace NewsMedia.Controllers
             return RedirectToAction("Articles");
         }
 
+        public ActionResult Sports()
+        {
+            var model = SportsCategory();
+            return View(model);
+        }
+
+        public List<Article> SportsCategory()
+        {
+            Connection();
+            List<Article> sportCategory = new List<Article>(); //list of articles of that particular category
+            DataTable getSport = new DataTable(); //to use select option which will retreive all data
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [dbo].[Article] WHERE categoryId = '1'", connectToDB);
+            adapter.Fill(getSport); //fill in sportTb with data retreived from sql
+
+            foreach (DataRow data in getSport.Rows)
+            {
+                Article art = new Article();
+                art.Title = data["Title"].ToString();
+                art.subHeader = data["subHeader"].ToString();
+                art.Content = data["Content"].ToString();
+                art.dateCreated = (DateTime)data["dateCreated"];
+                art.UserId = (int)data["UserId"];
+                art.categoryId = (int)data["categoryId"];
+                sportCategory.Add(art);
+            }
+
+            //return the list
+            return sportCategory;
+        }
+
+        public ActionResult Opinion()
+        {
+            var model = OpinionCategory();
+            return View(model);
+        }
+
+        public List<Article> OpinionCategory()
+        {
+            Connection();
+            List<Article> opinionCategory = new List<Article>(); //list of articles of that particular category
+            DataTable getopinion = new DataTable(); //to use select option which will retreive all data
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [dbo].[Article] WHERE categoryId = '2'", connectToDB);
+            adapter.Fill(getopinion); //fill in sportTb with data retreived from sql
+
+            foreach (DataRow data in getopinion.Rows)
+            {
+                Article art = new Article();
+                art.Title = data["Title"].ToString();
+                art.subHeader = data["subHeader"].ToString();
+                art.Content = data["Content"].ToString();
+                art.dateCreated = (DateTime)data["dateCreated"];
+                art.UserId = (int)data["UserId"];
+                art.categoryId = (int)data["categoryId"];
+                opinionCategory.Add(art);
+            }
+
+            //return the list
+            return opinionCategory;
+        }
+
         public ActionResult National()
         {
             //nat
@@ -217,6 +286,90 @@ namespace NewsMedia.Controllers
 
             //return the list
             return overseaCategory;
+        }
+
+        public ActionResult Travel()
+        {
+            var model = TravelCategory();
+            return View(model);
+        }
+
+        public List<Article> TravelCategory()
+        {
+            Connection();
+            List<Article> travelCategory = new List<Article>(); //list of articles of that particular category
+            DataTable getTravel = new DataTable(); //to use select option which will retreive all data
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [dbo].[Article] WHERE categoryId = '5'", connectToDB);
+            adapter.Fill(getTravel); //fill in sportTb with data retreived from sql
+
+            foreach (DataRow data in getTravel.Rows)
+            {
+                Article art = new Article();
+                art.Title = data["Title"].ToString();
+                art.subHeader = data["subHeader"].ToString();
+                art.Content = data["Content"].ToString();
+                art.dateCreated = (DateTime)data["dateCreated"];
+                art.UserId = (int)data["UserId"];
+                art.categoryId = (int)data["categoryId"];
+                travelCategory.Add(art);
+            }
+            //return the list
+            return travelCategory;
+        }
+
+        public ActionResult Odd()
+        {
+            var model = OddCategory();
+            return View(model);
+        }
+
+        public List<Article> OddCategory()
+        {
+            Connection();
+            List<Article> oddCategory = new List<Article>(); //list of articles of that particular category
+            DataTable getodd = new DataTable(); //to use select option which will retreive all data
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [dbo].[Article] WHERE categoryId = '6'", connectToDB);
+            adapter.Fill(getodd); //fill in sportTb with data retreived from sql
+
+            foreach (DataRow data in getodd.Rows)
+            {
+                Article art = new Article();
+                art.Title = data["Title"].ToString();
+                art.subHeader = data["subHeader"].ToString();
+                art.Content = data["Content"].ToString();
+                art.dateCreated = (DateTime)data["dateCreated"];
+                art.UserId = (int)data["UserId"];
+                art.categoryId = (int)data["categoryId"];
+                oddCategory.Add(art);
+            }
+
+            //return the list
+            return oddCategory;
+        }
+
+        public List<Article> ArticleChronological()
+        {
+            Connection();
+            List<Article> topFive = new List<Article>(); 
+            DataTable getarticle = new DataTable(); 
+                                                        //To get the latest 5 articles depending on the dateCreated parameter
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT TOP 5 FROM [dbo].[Article] ORDER BY dateCreated DESC", connectToDB);
+            adapter.Fill(getarticle); //fill in sportTb with data retreived from sql
+
+            foreach (DataRow data in getarticle.Rows)
+            {
+                Article art = new Article();
+                art.Title = data["Title"].ToString();
+                art.subHeader = data["subHeader"].ToString();
+                art.Content = data["Content"].ToString();
+                art.dateCreated = (DateTime)data["dateCreated"];
+                art.UserId = (int)data["UserId"];
+                art.categoryId = (int)data["categoryId"];
+                topFive.Add(art);
+            }
+
+            //return the list
+            return topFive;
         }
 
     }

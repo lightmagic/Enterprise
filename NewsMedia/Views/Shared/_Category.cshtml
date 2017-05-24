@@ -1,7 +1,31 @@
 ﻿@{
-    ViewBag.Title = "Catetgory";
+    ViewBag.Title = "_Category";
 }
 
+<h2>Category</h2>
 
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Sub-Header</th>
+        <th>Content</th>
 
-<h1> HUHUHUHUH</h1>
+    </tr>
+
+    @foreach (var article in Model)
+    {
+        <tr>
+            <td>@article.Title</td>
+            <td>@article.subHeader</td>
+            <td>@article.Content</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { Title = article.Title }, new { @style = "color:blue" })
+                @Html.ActionLink("Delete", "DeleteArticle", new { Title = article.Title }, new { @style = "color:blue" })
+            </td>
+
+        </tr>
+
+    }
+
+    <br />
+    <h4>@Html.ActionLink("Create a new Article", "Create")</h4>

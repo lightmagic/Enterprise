@@ -76,7 +76,7 @@ namespace NewsMedia.Controllers
                 }
                 catch (MembershipCreateUserException e)
                 {
-                    ModelState.AddModelError("", HtmlHelper(e.StatusCode));
+                    TempData["msg"] = "Error. Could not delete the User";
                 }
             }
 
@@ -133,31 +133,31 @@ namespace NewsMedia.Controllers
             RemoveLoginSuccess,
         }
 
-        private static string HtmlHelper(MembershipCreateStatus createStatus)
-        {
-            switch (createStatus)
-            {
-                //These return messages will appear in the website as an error output. Example if you register with an existing email
-                //then the return message for DuplicateUserName will show up
-                case MembershipCreateStatus.DuplicateUserName:
-                    return "Username already exists. Input a different username!";
+        //private static string HtmlHelper(MembershipCreateStatus createStatus)
+        //{
+        //    switch (createStatus)
+        //    {
+        //        //These return messages will appear in the website as an error output. Example if you register with an existing email
+        //        //then the return message for DuplicateUserName will show up
+        //        //case MembershipCreateStatus.DuplicateUserName:
+        //        //    return "Username already exists. Input a different username!";
 
-                case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
+        //        case MembershipCreateStatus.DuplicateEmail:
+        //            return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
 
-                case MembershipCreateStatus.InvalidPassword:
-                    return "The Password must be atleast 6 characters long!";
+        //        case MembershipCreateStatus.InvalidPassword:
+        //            return "The Password must be atleast 6 characters long!";
 
-                case MembershipCreateStatus.InvalidEmail:
-                    return "Invalid Email Address";
+        //        case MembershipCreateStatus.InvalidEmail:
+        //            return "Invalid Email Address";
 
-                case MembershipCreateStatus.UserRejected:
-                    return "While creating a user, there was an internal problem. Try to register again and or refresh";
+        //        case MembershipCreateStatus.UserRejected:
+        //            return "While creating a user, there was an internal problem. Try to register again and or refresh";
 
-                default:
-                    return "An error occured. Please try again or refresh the page!";
-            }
-        }
+        //        default:
+        //            return "An error occured. Please try again or refresh the page!";
+        //    }
+        //}
         #endregion
     }
 }

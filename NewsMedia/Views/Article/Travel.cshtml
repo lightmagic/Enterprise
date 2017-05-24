@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Travel";
+}
+
+<h2>Travel</h2>
+
+<table border="1">
+    <tr>
+        <th>ArticleTitle</th>
+        <th>SubHeader</th>
+        <th>Content</th>
+
+    </tr>
+
+    @foreach (var article in Model)
+    {
+        <tr>
+            <td>@article.Title</td>
+            <td>@article.subHeader</td>
+            <td>@article.Content</td>
+            <td>
+                @Html.ActionLink("View", "View", new { Title = article.Title }, new { @style = "color:blue" })
+                @Html.ActionLink("Edit", "Edit", new { Title = article.Title }, new { @style = "color:blue" })
+                @Html.ActionLink("Delete", "DeleteArticle", new { Title = article.Title }, new { @style = "color:blue" })
+            </td>
+
+        </tr>
+
+    }
+
+    <br />
+    <h4>@Html.ActionLink("Create a new Article", "Create")</h4>

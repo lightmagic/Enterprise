@@ -1,0 +1,24 @@
+﻿@model NewsMedia.Models.Article
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<h4>Article Title</h4>
+<div>@Html.DisplayFor(model => model.Title)</div>
+
+<h4>Sub-Header</h4>
+<div>@Html.DisplayFor(model => model.subHeader)</div>
+
+<h4>Category</h4>
+<div>@Html.DisplayFor(model => model.categoryId)</div>
+
+<h4>Author</h4>
+<div>@Html.DisplayFor(model => model.UserId)</div>
+
+<h4>Image</h4>
+<div>@Html.DisplayFor(model => model.imageArticle)</div>
+
+<h4>Content</h4>
+<div>@Html.DisplayFor(model => model.Content)</div>   

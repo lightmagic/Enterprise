@@ -111,7 +111,7 @@ namespace NewsMedia.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(string Title, string subHeader, string Content, int categoryId)
+        public ActionResult Edit(string Title, string subHeader, string Content, int categoryId, bool breakingNews)
         {
             try
             {
@@ -122,12 +122,18 @@ namespace NewsMedia.Controllers
                 art = GetArticle(Title); //retreive the article title
                 int articleId = art.articleId;
 
+                int isBreakingbool = 0;
+                if (breakingNews == true)
+                {
+                    isBreakingbool = 1;
+                }
 
-                SqlCommand cmd = new SqlCommand("UPDATE [dbo].[Article] SET Title = @Title, subHeader = @subHeader, Content = @Content, categoryId = @categoryId WHERE articleId = @articleId", connectToDB);
+                SqlCommand cmd = new SqlCommand("UPDATE [dbo].[Article] SET Title = @Title, subHeader = @subHeader, Content = @Content, categoryId = @categoryId, breakingNews = @breakingNews WHERE articleId = @articleId", connectToDB);
                 cmd.Parameters.AddWithValue("@Title", Title);
                 cmd.Parameters.AddWithValue("@subHeader", subHeader);
                 cmd.Parameters.AddWithValue("@Content", Content);
                 cmd.Parameters.AddWithValue("@categoryId", categoryId);
+                cmd.Parameters.AddWithValue("@breakingNews", isBreakingbool);
                 cmd.Parameters.AddWithValue("@articleId", articleId);
 
                 cmd.ExecuteNonQuery(); //executes the query so that it will query all the data and Updates Article database
@@ -187,6 +193,7 @@ namespace NewsMedia.Controllers
                 art.Title = data["Title"].ToString();
                 art.subHeader = data["subHeader"].ToString();
                 art.Content = data["Content"].ToString();
+                art.imageArticle = data["imageArticle"].ToString();
                 art.dateCreated = (DateTime)data["dateCreated"];
                 art.UserId = (int)data["UserId"];
                 art.categoryId = (int)data["categoryId"];
@@ -217,6 +224,7 @@ namespace NewsMedia.Controllers
                 art.Title = data["Title"].ToString();
                 art.subHeader = data["subHeader"].ToString();
                 art.Content = data["Content"].ToString();
+                art.imageArticle = data["imageArticle"].ToString();
                 art.dateCreated = (DateTime)data["dateCreated"];
                 art.UserId = (int)data["UserId"];
                 art.categoryId = (int)data["categoryId"];
@@ -248,6 +256,7 @@ namespace NewsMedia.Controllers
                 art.Title = data["Title"].ToString();
                 art.subHeader = data["subHeader"].ToString();
                 art.Content = data["Content"].ToString();
+                art.imageArticle = data["imageArticle"].ToString();
                 art.dateCreated = (DateTime)data["dateCreated"];
                 art.UserId = (int)data["UserId"];
                 art.categoryId = (int)data["categoryId"];
@@ -278,6 +287,7 @@ namespace NewsMedia.Controllers
                 art.Title = data["Title"].ToString();
                 art.subHeader = data["subHeader"].ToString();
                 art.Content = data["Content"].ToString();
+                art.imageArticle = data["imageArticle"].ToString();
                 art.dateCreated = (DateTime)data["dateCreated"];
                 art.UserId = (int)data["UserId"];
                 art.categoryId = (int)data["categoryId"];
@@ -308,6 +318,7 @@ namespace NewsMedia.Controllers
                 art.Title = data["Title"].ToString();
                 art.subHeader = data["subHeader"].ToString();
                 art.Content = data["Content"].ToString();
+                art.imageArticle = data["imageArticle"].ToString();
                 art.dateCreated = (DateTime)data["dateCreated"];
                 art.UserId = (int)data["UserId"];
                 art.categoryId = (int)data["categoryId"];
@@ -337,6 +348,7 @@ namespace NewsMedia.Controllers
                 art.Title = data["Title"].ToString();
                 art.subHeader = data["subHeader"].ToString();
                 art.Content = data["Content"].ToString();
+                art.imageArticle = data["imageArticle"].ToString();
                 art.dateCreated = (DateTime)data["dateCreated"];
                 art.UserId = (int)data["UserId"];
                 art.categoryId = (int)data["categoryId"];
@@ -345,31 +357,6 @@ namespace NewsMedia.Controllers
 
             //return the list
             return oddCategory;
-        }
-
-        public List<Article> ArticleChronological()
-        {
-            Connection();
-            List<Article> topFive = new List<Article>(); 
-            DataTable getarticle = new DataTable(); 
-                                                        //To get the latest 5 articles depending on the dateCreated parameter
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT TOP 5 FROM [dbo].[Article] ORDER BY dateCreated DESC", connectToDB);
-            adapter.Fill(getarticle); //fill in sportTb with data retreived from sql
-
-            foreach (DataRow data in getarticle.Rows)
-            {
-                Article art = new Article();
-                art.Title = data["Title"].ToString();
-                art.subHeader = data["subHeader"].ToString();
-                art.Content = data["Content"].ToString();
-                art.dateCreated = (DateTime)data["dateCreated"];
-                art.UserId = (int)data["UserId"];
-                art.categoryId = (int)data["categoryId"];
-                topFive.Add(art);
-            }
-
-            //return the list
-            return topFive;
         }
 
     }

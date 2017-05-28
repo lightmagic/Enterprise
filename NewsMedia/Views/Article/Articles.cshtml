@@ -10,6 +10,7 @@
         <th>Sub-Header</th>
         <th>Content</th>
         <th>Image</th>
+        <th>BreakingNews</th>
         <th>Category ID</th>
         <th>User ID</th>
     </tr>
@@ -21,10 +22,12 @@
             <td>@article.subHeader</td>
             <td>@article.Content</td>
             <td>@article.imageArticle</td>
+            <td>@article.breakingNews</td>
             <td>@article.categoryId</td>
             <td>@article.UserId</td>
+
             <td>
-                @Html.ActionLink("View", "View", new { Title = article.Title }, new { @style = "color:blue" })
+                @Html.ActionLink("Display", "View", new { Title = article.Title }, new { @style = "color:blue" })
                 @Html.ActionLink("Edit", "Edit", new { Title = article.Title }, new { @style = "color:blue" })
                 @Html.ActionLink("Delete", "DeleteArticle", new { Title = article.Title }, new { @style = "color:blue"})
             </td>

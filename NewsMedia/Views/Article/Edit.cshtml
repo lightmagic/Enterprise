@@ -33,6 +33,11 @@
            new SelectListItem{Value = "6", Text="Odd"}
        })
         </tr>
+
+        <tr>
+            @Html.LabelFor(model => model.breakingNews)
+            @Html.CheckBoxFor(model => model.breakingNews)
+        </tr>
     </table>
     
     <input type="submit" value="Edit" />
